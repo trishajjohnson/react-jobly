@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JoblyApi from './api';
 import JobCardList from './JobCardList';
+import LoadingSpinner from "./LoadingSpinner";
 import './CompanyDetail.css';
 
 function CompanyDetail() {
@@ -18,18 +19,25 @@ function CompanyDetail() {
             setCompany(res);
         }
         getCompanyDetails();
-    }, [handle]);
+    }, []);
     
-    console.log("company", company)
+    debugger;
+
+    if(!company) return <LoadingSpinner />;
+
     return (
-        
-        <div className="CompanyDetail">
-            <h4>{company.name}</h4>
-            <p>{company.description}</p>
-            <div className="JobsList">  
-                <JobCardList jobs={company.jobs} /> 
-            </div>                
-        </div>         
+
+        <div>
+
+            <div className="CompanyDetail">
+                <h4>{company.name}</h4>
+                <p>{company.description}</p>
+                <div className="JobsList">  
+                    <JobCardList jobs={company.jobs} /> 
+                </div>                
+            </div> 
+
+        </div>
         
     );
 }
