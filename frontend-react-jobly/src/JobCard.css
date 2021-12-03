@@ -1,0 +1,28 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: rgba(49, 69, 169, 0.8);
+}
+
+
+.JobCard {
+    box-shadow: 6px 5px 10px 0px rgba(192,192,192,0.75);
+    -webkit-box-shadow: 6px 5px 10px 0px rgba(192,192,192,0.75);
+    -moz-box-shadow: 6px 5px 10px 0px rgba(192,192,192,0.75);
+    margin: 15px;
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 20px;
+}
+
+.apply {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    margin: 10px 0;
+}

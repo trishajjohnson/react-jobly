@@ -1,0 +1,25 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: rgba(49, 69, 169, 0.8);
+}
+
+
+
+
+.CompanyCard {
+    box-shadow: 6px 5px 10px 0px rgba(192,192,192,0.75);
+    -webkit-box-shadow: 6px 5px 10px 0px rgba(192,192,192,0.75);
+    -moz-box-shadow: 6px 5px 10px 0px rgba(192,192,192,0.75);
+    margin: 15px;
+    padding: 10px;
+}
+
+.CompanyCard:hover {
+    box-shadow: 6px 5px 10px 0px rgba(141,141,141,0.75);
+    -webkit-box-shadow: 6px 5px 10px 0px rgba(141,141,141,0.75);
+    -moz-box-shadow: 6px 5px 10px 0px rgba(141,141,141,0.75);
+}
