@@ -8,9 +8,12 @@ import Homepage from './Homepage';
 import CompaniesList from './CompaniesList';
 import CompanyDetail from './CompanyDetail';
 import JobsList from './JobsList';
+import LoginForm from './auth/LoginForm';
+import SignupForm from './auth/SignupForm';
+import EditProfileForm from './EditProfileForm';
 
 
-function Routes() {
+function Routes({login, signup}) {
   return (
     <Switch>
       <Route exact path="/">
@@ -24,6 +27,15 @@ function Routes() {
       </Route>
       <Route exact path="/jobs">
         <JobsList />
+      </Route>
+      <Route exact path="/login">
+        <LoginForm login={login}/>
+      </Route>
+      <Route exact path="/signup">
+        <SignupForm signup={signup}/>
+      </Route>
+      <Route exact path="/profile">
+        <EditProfileForm />
       </Route>
     </Switch>
   );

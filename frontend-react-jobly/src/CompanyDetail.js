@@ -6,7 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import './CompanyDetail.css';
 
 function CompanyDetail() {
-    const [company, setCompany] = useState([]);
+    const [company, setCompany] = useState(null);
     const {handle} = useParams();
     console.log(handle);
     console.log(typeof handle);
@@ -21,7 +21,6 @@ function CompanyDetail() {
         getCompanyDetails();
     }, []);
     
-    debugger;
 
     if(!company) return <LoadingSpinner />;
 
