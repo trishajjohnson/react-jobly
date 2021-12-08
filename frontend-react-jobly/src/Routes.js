@@ -5,8 +5,8 @@ import {
   Redirect
 } from 'react-router-dom';
 import Homepage from './Homepage';
-import CompaniesList from './CompaniesList';
-import CompanyDetail from './CompanyDetail';
+import CompaniesList from './companies/CompaniesList';
+import CompanyDetail from './companies/CompanyDetail';
 import JobsList from './JobsList';
 import LoginForm from './auth/LoginForm';
 import SignupForm from './auth/SignupForm';

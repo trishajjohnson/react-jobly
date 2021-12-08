@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
-import JoblyApi from './api';
+import React, { useState, useEffect, useContext } from "react";
+import JoblyApi from '../api';
 import CompanyCard from './CompanyCard';
-import LoadingSpinner from "./LoadingSpinner";
-import SearchForm from './SearchForm';
+import LoadingSpinner from "../LoadingSpinner";
+import SearchForm from '../SearchForm';
+import currentUserContext from "../currentUserContext";
+import { Redirect } from "react-router-dom";
 import './CompaniesList.css';
 
 function CompaniesList() {
+    const { currentUser } = useContext(currentUserContext);
     const [companies, setCompanies] = useState(null);
 
     useEffect(function getCompaniesOnPageLoad() {
@@ -24,6 +27,10 @@ function CompaniesList() {
     }
 
     if (!companies) return <LoadingSpinner />;
+
+    if (!currentUser) {
+        return <Redirect to="/login" />
+    }
 
     return (
         <div className="CompaniesList">

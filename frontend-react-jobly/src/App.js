@@ -11,9 +11,9 @@ import currentUserContext from "./currentUserContext";
 export const STORE_TOKEN_ID = "token-id";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [token, setToken] = useState(JoblyApi.token);
   const [infoLoaded, setInfoLoaded] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [token, setToken] = useState(null);
 
   useEffect(function loadUserInfo() {
     async function getCurrentUser() {
@@ -23,13 +23,15 @@ function App() {
           JoblyApi.token = token;
           let currentUser = await JoblyApi.getCurrentUser(username);
           setCurrentUser(currentUser);
-          console.log("currentUser", currentUser);
+          console.log("currentUser in app.js", currentUser);
         } catch(e) {
           console.log(e);
+          setCurrentUser(null);
         }
       }
+      setInfoLoaded(true)
     }
-    setInfoLoaded(true)
+    setInfoLoaded(false);
     getCurrentUser();
   }, [token])
 
@@ -40,6 +42,7 @@ function App() {
       return { sucess: true };
     } catch(e) {
       console.log("Errors: ", e);
+      return { success: false, e }
     }
   }
 
@@ -58,17 +61,17 @@ function App() {
     setToken(null);
   }
 
-  // if(!infoLoaded) return <LoadingSpinner />;
+  if(!infoLoaded) return <LoadingSpinner />;
 
   return (
     <BrowserRouter>
-        <currentUserContext.Provider value={currentUser}>
-          <div className="App">
-            <Navbar logout={logout} />
-            <Routes signup={signup} login={login} /> 
-          </div>
-        </currentUserContext.Provider>
-      </BrowserRouter>
+      <currentUserContext.Provider value={{currentUser}}>
+        <div className="App">
+          <Navbar logout={logout} />
+          <Routes signup={signup} login={login} /> 
+        </div>
+      </currentUserContext.Provider>
+    </BrowserRouter>
   );
 }
 

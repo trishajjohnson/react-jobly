@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import currentUserContext from "./currentUserContext";
 import JoblyApi from './api';
 
 function EditProfileForm() {
+  const { currentUser, setCurrentUser } = useContext(currentUserContext);
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
+    username: currentUser.username,
+    password: currentUser.password,
+    firstName: currentUser.firstName,
+    lastName: currentUser.lastName,
+    email: ""
   });
 
   const [formErrors, setFormErrors] = useState([]);
@@ -31,13 +33,16 @@ function EditProfileForm() {
     };
 
     let username = formData.username;
+    let updateUser;
 
     try {
-        await JoblyApi.updateProfile(username, profileData);
+        updateUser = await JoblyApi.updateProfile(username, profileData);
     } catch(e) {
         console.log(e);
         setFormErrors(e);
     }
+    // setFormData(formData => ({...formData, password: ""}));
+    setCurrentUser(updateUser);
   };
 
   return (
