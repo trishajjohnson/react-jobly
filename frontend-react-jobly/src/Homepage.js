@@ -3,7 +3,7 @@ import currentUserContext from "./currentUserContext";
 
 function Homepage() {
   const { currentUser } = useContext(currentUserContext);
-
+  
   function loggedIn() {
     if(currentUser) {
       return (
@@ -22,8 +22,9 @@ function Homepage() {
           <h1>Jobly</h1>
           <p>All the jobs in one, convenient place.</p>
           <div>
-            <button>Log in</button>
-            <button>Sign up</button>
+            <a className="btn btn-primary m-2" href="/login">Log in</a>
+            <a className="btn btn-primary m-2" href="/signup">Sign up</a>
+            
           </div>
         </div>
     )
@@ -32,7 +33,7 @@ function Homepage() {
 
   return (
     <div>
-        <h1>Welcome to Jobly!</h1>
+        {currentUser ? loggedIn() : loggedOut()}
     </div>
   );
 }

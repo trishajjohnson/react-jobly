@@ -6,10 +6,10 @@ function EditProfileForm() {
   const { currentUser, setCurrentUser } = useContext(currentUserContext);
   const [formData, setFormData] = useState({
     username: currentUser.username,
-    password: currentUser.password,
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
-    email: ""
+    email: currentUser.email,
+    password: ""
   });
 
   const [formErrors, setFormErrors] = useState([]);

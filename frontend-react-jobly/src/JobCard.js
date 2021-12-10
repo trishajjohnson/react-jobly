@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import currentUserContext from "./currentUserContext";
 import './JobCard.css';
 
 function JobCard({job}) {
+    const { hasApplied, applyToJob } = useContext(currentUserContext);
+    const [applied, setApplied] = useState();
+
+    useEffect(function updateAppliedStatus() {
+        setApplied(hasApplied(job.id));
+    }, [job.id, hasApplied]);
+    
+    function handleClick(evt) {
+        evt.preventDefault();
+        if(hasApplied(job.id)) return; 
+        applyToJob(job.id);
+        setApplied(true);
+    }
 
     return (
         
@@ -16,8 +30,14 @@ function JobCard({job}) {
                 </div>  
                 <div>
                     <small>Equity: {job.equity}</small>    
-                </div>  
-                <button className="apply">Apply</button>
+                </div>
+                <button 
+                onClick={handleClick}
+                disabled={applied}
+                className="apply"
+                >
+                    {applied ? "Applied" : "Apply"}
+                </button>
             </div>            
         </div>         
         

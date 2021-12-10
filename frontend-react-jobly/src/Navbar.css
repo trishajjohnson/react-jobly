@@ -1,0 +1,10 @@
+.navbar-custom {
+    /* float: right !important; */
+    display: flex !important;
+    justify-content: space-between !important;
+    /* flex-direction: column; */
+}
+
+.xtra-margin {
+    margin-right: 20px !important;
+}
